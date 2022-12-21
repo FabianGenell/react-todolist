@@ -1,4 +1,4 @@
-const Task = ({ task, handleCheck, activateEditTask }) => {
+const Task = ({ task, toggleCompleted, activateEditTask }) => {
   return (
     <li onDoubleClick={() => activateEditTask(task.id)}>
       <input
@@ -6,7 +6,7 @@ const Task = ({ task, handleCheck, activateEditTask }) => {
         name="completed"
         id="completed"
         checked={task.completed}
-        onChange={() => handleCheck(task.id)}
+        onChange={() => toggleCompleted(task.id)}
       />
       <h3>{task.title}</h3>
       <p>{task.category}</p>

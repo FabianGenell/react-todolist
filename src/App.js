@@ -68,6 +68,7 @@ const App = () => {
     },
   ]);
 
+  const [categories, setCategories] = useState();
   const [activeEditing, setActiveEditing] = useState();
   const [showAddTask, setShowAddTask] = useState(false);
 
@@ -77,6 +78,10 @@ const App = () => {
 
   }, [showAddTask])
 
+  useEffect(() => {
+    const catSet = new Set(tasks.map((task) => task.category));
+    setCategories(Array.from(catSet))
+  }, [tasks])
 
   function createTask(task) {
 
@@ -109,7 +114,7 @@ const App = () => {
     setShowAddTask(true)
   }
 
-  const handleCheck = (id) => {
+  const toggleCompleted = (id) => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
@@ -121,7 +126,7 @@ const App = () => {
     <div className="App">
       <section>
         <Date />
-        <Tasks tasks={tasks} handleCheck={handleCheck} activateEditTask={activateEditTask} />
+        <Tasks tasks={tasks} toggleCompleted={toggleCompleted} activateEditTask={activateEditTask} />
         {showAddTask && <AddTask
           createTask={createTask}
           replaceTask={replaceTask}
@@ -129,6 +134,7 @@ const App = () => {
           activeEditing={activeEditing}
           showAddTask={showAddTask}
           setShowAddTask={setShowAddTask}
+          categories={categories}
         />}
 
         <button onClick={() => setShowAddTask(true)}>Add</button>
