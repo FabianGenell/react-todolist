@@ -1,6 +1,6 @@
-const Task = ({ task, handleCheck }) => {
+const Task = ({ task, handleCheck, activateEditTask }) => {
   return (
-    <li>
+    <li onDoubleClick={() => activateEditTask(task.id)}>
       <input
         type="checkbox"
         name="completed"
@@ -10,6 +10,7 @@ const Task = ({ task, handleCheck }) => {
       />
       <h3>{task.title}</h3>
       <p>{task.category}</p>
+      <button onClick={() => activateEditTask(task.id)}>...</button>
     </li>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AddTask } from "./components/AddTask";
 import Date from "./components/Date";
 import Tasks from "./components/Tasks";
@@ -68,12 +68,45 @@ const App = () => {
     },
   ]);
 
+  const [activeEditing, setActiveEditing] = useState();
+  const [showAddTask, setShowAddTask] = useState(false);
+
+  useEffect(() => {
+
+    if (!showAddTask) setActiveEditing();
+
+  }, [showAddTask])
+
+
   function createTask(task) {
 
     task.id = tasks.length + 1;
     task.completed = false;
 
     setTasks((prevTasks) => [...prevTasks, task]);
+  }
+
+  function replaceTask(newTask) {
+    setTasks((prevTasks) => {
+      return prevTasks.map((oldTask) => oldTask.id === newTask.id ? newTask : oldTask);
+    });
+
+    setShowAddTask(false);
+  }
+
+  function deleteTask(id) {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+
+    setShowAddTask(false);
+  }
+
+
+
+  function activateEditTask(id) {
+
+    tasks.map(task => { if (task.id === id) setActiveEditing(task); });
+
+    setShowAddTask(true)
   }
 
   const handleCheck = (id) => {
@@ -88,8 +121,18 @@ const App = () => {
     <div className="App">
       <section>
         <Date />
-        <Tasks tasks={tasks} handleCheck={handleCheck} />
-        <AddTask createTask={createTask} />
+        <Tasks tasks={tasks} handleCheck={handleCheck} activateEditTask={activateEditTask} />
+        {showAddTask && <AddTask
+          createTask={createTask}
+          replaceTask={replaceTask}
+          deleteTask={deleteTask}
+          activeEditing={activeEditing}
+          showAddTask={showAddTask}
+          setShowAddTask={setShowAddTask}
+        />}
+
+        <button onClick={() => setShowAddTask(true)}>Add</button>
+
       </section>
     </div>
   );
