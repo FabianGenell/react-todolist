@@ -1,16 +1,20 @@
-const Task = ({ task, toggleCompleted, activateEditTask }) => {
+const Task = ({ task, toggleCompletedTask, activateEditTask, className }) => {
   return (
-    <li onDoubleClick={() => activateEditTask(task.id)}>
+    <li className={className} onDoubleClick={() => activateEditTask(task.id)}>
       <input
         type="checkbox"
         name="completed"
         id="completed"
         checked={task.completed}
-        onChange={() => toggleCompleted(task.id)}
+        onChange={() => toggleCompletedTask(task.id)}
       />
-      <h3>{task.title}</h3>
-      <p>{task.category}</p>
-      <button onClick={() => activateEditTask(task.id)}>...</button>
+
+      <div className="text-container">
+        <h3>{task.title}</h3>
+        {!task.completed && <p>{task.category}</p>}
+      </div>
+
+      <button className="edit-button" onClick={() => activateEditTask(task.id)}>...</button>
     </li>
   );
 };

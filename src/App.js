@@ -105,28 +105,29 @@ const App = () => {
     setShowAddTask(false);
   }
 
-
-
   function activateEditTask(id) {
 
-    tasks.map(task => { if (task.id === id) setActiveEditing(task); });
+    tasks.forEach(task => { if (task.id === id) setActiveEditing(task); });
 
     setShowAddTask(true)
   }
 
-  const toggleCompleted = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
+  function toggleCompletedTask(id) {
+    setTasks(tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    ));
   };
 
   return (
     <div className="App">
-      <section>
-        <Date />
-        <Tasks tasks={tasks} toggleCompleted={toggleCompleted} activateEditTask={activateEditTask} />
+      <main className="content">
+        <header>
+          <Date />
+          <p>5 incomplete, 5 completed</p>
+        </header>
+
+        <Tasks tasks={tasks} toggleCompletedTask={toggleCompletedTask} activateEditTask={activateEditTask} />
+
         {showAddTask && <AddTask
           createTask={createTask}
           replaceTask={replaceTask}
@@ -139,7 +140,7 @@ const App = () => {
 
         <button onClick={() => setShowAddTask(true)}>Add</button>
 
-      </section>
+      </main>
     </div>
   );
 };

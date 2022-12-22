@@ -1,23 +1,25 @@
 import Task from "./Task";
+import "../styles/tasks.css";
 
-const Tasks = ({ tasks, toggleCompleted, activateEditTask }) => {
+
+const Tasks = ({ tasks, toggleCompletedTask, activateEditTask }) => {
   return (
-    <div>
+    <div className="tasks-wrapper">
       <h2>Incomplete</h2>
-      <ul>
+      <ul className="task-container">
         {tasks
           .filter((task) => task.completed === false)
           .map((task) => (
-            <Task task={task} key={task.id} toggleCompleted={toggleCompleted} activateEditTask={activateEditTask} />
+            <Task className="task" task={task} key={task.id} toggleCompletedTask={toggleCompletedTask} activateEditTask={activateEditTask} />
           ))}
       </ul>
 
       <h2>Complete</h2>
-      <ul>
+      <ul className="task-container">
         {tasks
           .filter((task) => task.completed === true)
           .map((task) => (
-            <Task task={task} key={task.id} toggleCompleted={toggleCompleted} activateEditTask={activateEditTask} />
+            <Task className="task completed" task={task} key={task.id} toggleCompletedTask={toggleCompletedTask} activateEditTask={activateEditTask} />
           ))}
       </ul>
     </div>

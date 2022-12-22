@@ -1,17 +1,14 @@
 import { useState } from "react"
+import SuggestInput from "./SuggestInput";
 
 
 export function AddTask({ createTask, replaceTask, activeEditing = {}, setShowAddTask, deleteTask, categories }) {
 
     const [inputState, setInputState] = useState({ title: activeEditing.title || '', category: activeEditing.category || '' });
 
-
-    function editInputState(changeObject) {
-        setInputState((prevInput) => ({ ...prevInput, ...changeObject }));
+    function editInputState(newState) {
+        setInputState((prev) => ({ ...prev, ...newState }));
     }
-
-
-
 
     function addTask(e) {
         e.preventDefault()
@@ -50,6 +47,7 @@ export function AddTask({ createTask, replaceTask, activeEditing = {}, setShowAd
                     <SuggestInput
                         array={categories}
                         typingState={inputState.category}
+                        editInputState={editInputState}
 
                         type="text"
                         onChange={(e) => editInputState({ category: e.target.value })}
@@ -70,32 +68,3 @@ export function AddTask({ createTask, replaceTask, activeEditing = {}, setShowAd
 }
 
 
-function SuggestInput({ array, typingState, suggestions = 3, ...props }) {
-
-    const possibilities = array.filter((word, index) => {
-
-        let regex = new RegExp(typingState, 'i');
-
-        return (word.match(regex))
-
-    });
-    return (
-        <>
-
-            <div className="suggestions">
-                {possibilities.map((possibilty, index) => {
-
-                    console.log(index + '. ' + possibilty);
-
-                    if (index < suggestions) {
-                        return <p className="suggestion" key={index} onClick={() => { }}>{possibilty}</p>
-                    }
-
-                })}
-            </div>
-            <input {...props} />
-        </>
-    )
-
-
-}

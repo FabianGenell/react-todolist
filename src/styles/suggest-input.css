@@ -1,0 +1,47 @@
+.suggestion-wrapper {
+    position: relative;
+    display: inline-block
+}
+
+.suggestion-wrapper:focus {
+    background-color: red;
+    width: 1000px;
+}
+
+.suggestions {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    width: 100%;
+    max-height: 300%;
+    overflow-x: auto;
+
+    background-color: rgba(212, 211, 197, 0.623);
+}
+
+.suggestions::-webkit-scrollbar{
+    display: none;
+}
+
+.suggestion:active{
+    display: block;
+}
+
+.suggestions:has(+ input:focus){
+    display: block;
+    
+}
+
+.suggestions .suggestion{
+    padding: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.204);
+    border-bottom: none;
+    cursor: pointer;
+}
+
+
+.suggestions .suggestion:hover{
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+

@@ -4,4 +4,56 @@
   --light-primary-dark: #575767;
   --light-heavy-dark: #0e0e11;
   --light-disable-dark: #b9b9be;
+  --light-detail-dark: #D0D0D0;
+
+  --light-background-color: #F8F8F8;
+}
+
+html{
+  background-color: var(--light-background-color);
+}
+
+h1{
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--light-heavy-dark);
+
+}
+
+h2{
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--light-primary-dark);
+
+}
+h3{
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--light-primary-dark);
+
+}
+
+p{
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--light-disable-dark);
+}
+.App{
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  padding: 1rem;
+}
+
+header {
+  border-bottom: 2px solid var(--light-detail-dark);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+header p{
+  color: var(--light-primary-dark);
+  font-weight: 600;
 }
