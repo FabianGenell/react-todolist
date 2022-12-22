@@ -1,19 +1,44 @@
 .task-container {
     display: flex;
     flex-direction: column;
+    gap: .5rem;
 
+    margin: .5rem 0px;
     padding: 0;
-    margin: 0;
 }
 
 .task {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
+    position: relative;
+
+}
+
+.task-essentials {
+    display: flex;
+    align-items: baseline;
+    gap: .5rem;
+    padding-right: 2rem;
+}
+
+.category {
+    padding-left: 1.9rem;
 }
 
 .task .edit-button {
-    align-self: flex-end;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+
+    cursor: pointer;
+
     background: none;
     border: none;
     color: var(--light-primary-dark);
+}
+
+
+.completed h3 {
+    color: var(--light-disable-dark)
 }

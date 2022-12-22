@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { AddTask } from "./components/AddTask";
-import Date from "./components/Date";
-import Tasks from "./components/Tasks";
+import Content from "./components/Content";
 import "./styles/style.css";
-
+import { BsPlusLg } from 'react-icons/bs'
 const App = () => {
   const [tasks, setTasks] = useState([
     {
@@ -120,15 +119,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <main className="content">
-        <header>
-          <Date />
-          <p>5 incomplete, 5 completed</p>
-        </header>
-
-        <Tasks tasks={tasks} toggleCompletedTask={toggleCompletedTask} activateEditTask={activateEditTask} />
-
-        {showAddTask && <AddTask
+      {showAddTask ?
+        <AddTask
           createTask={createTask}
           replaceTask={replaceTask}
           deleteTask={deleteTask}
@@ -136,11 +128,15 @@ const App = () => {
           showAddTask={showAddTask}
           setShowAddTask={setShowAddTask}
           categories={categories}
-        />}
+        />
 
-        <button onClick={() => setShowAddTask(true)}>Add</button>
+        :
 
-      </main>
+        <>
+          <Content tasks={tasks} toggleCompletedTask={toggleCompletedTask} activateEditTask={activateEditTask} setShowAddTask={setShowAddTask} />
+          <button className="add-button" onClick={() => setShowAddTask(true)}><BsPlusLg /></button>
+        </>
+      }
     </div>
   );
 };

@@ -16,7 +16,8 @@
     max-height: 300%;
     overflow-x: auto;
 
-    background-color: rgba(212, 211, 197, 0.623);
+
+    background-color: var(--light-background-color);
 }
 
 .suggestions::-webkit-scrollbar{
@@ -33,10 +34,12 @@
 }
 
 .suggestions .suggestion{
-    padding: 2px;
-    border: 1px solid rgba(0, 0, 0, 0.204);
-    border-bottom: none;
+    padding: 1rem 1.5rem;
+    /* border: 1px solid rgba(0, 0, 0, 0.024); */
+    border-bottom: 2px solid rgba(0, 0, 0, 0.064);;
     cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.034);
+    color: var(--light-primary-dark)
 }
 
 

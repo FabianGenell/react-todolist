@@ -14,7 +14,7 @@ const Tasks = ({ tasks, toggleCompletedTask, activateEditTask }) => {
           ))}
       </ul>
 
-      <h2>Complete</h2>
+      <h2 style={{ padding: ".5rem 0" }}>Complete</h2>
       <ul className="task-container">
         {tasks
           .filter((task) => task.completed === true)

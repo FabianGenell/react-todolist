@@ -21,7 +21,7 @@ export default function SuggestInput({ array, typingState, editInputState, sugge
 
     return (
         <div className='suggestion-wrapper' >
-            {showSuggestions && <Suggestions possibilities={possibilities} editInputState={editInputState} />}
+            {<Suggestions possibilities={possibilities} editInputState={editInputState} />}
             <input {...props} />
         </div>
     )

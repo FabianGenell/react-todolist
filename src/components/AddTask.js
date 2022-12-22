@@ -1,5 +1,8 @@
 import { useState } from "react"
+import { RiArrowLeftLine } from 'react-icons/ri'
 import SuggestInput from "./SuggestInput";
+import '../styles/add-task.css'
+
 
 
 export function AddTask({ createTask, replaceTask, activeEditing = {}, setShowAddTask, deleteTask, categories }) {
@@ -33,8 +36,11 @@ export function AddTask({ createTask, replaceTask, activeEditing = {}, setShowAd
     return (
         <div className="add-task">
             <section>
-                <button onClick={() => setShowAddTask(false)}>Close</button>
-                <h3>{activeEditing.id ? 'Edit Task' : 'New Task'}</h3>
+                <header>
+                    <button className="close-button" onClick={() => setShowAddTask(false)}><RiArrowLeftLine className="back-arrow" />Go Back</button>
+                    <h1>{activeEditing.id ? 'Edit Task' : 'New Task'}</h1>
+                </header>
+
                 <form onSubmit={addTask}>
 
                     <input
@@ -54,12 +60,13 @@ export function AddTask({ createTask, replaceTask, activeEditing = {}, setShowAd
                         name="category"
                         placeholder="Category"
                         value={inputState.category}
+                        autocomplete="off"
                     />
 
                     {activeEditing.id &&
-                        <button type="button" onClick={() => deleteTask(activeEditing.id)}>Delete</button>}
+                        <button className="button delete-button" type="button" onClick={() => deleteTask(activeEditing.id)}>Delete</button>}
 
-                    <button type="submit">{activeEditing.id ? 'Edit Task' : 'Add Task'}</button>
+                    <button className="button submit-button" type="submit">{activeEditing.id ? 'Save Task' : 'Add Task'}</button>
 
                 </form>
             </section>
